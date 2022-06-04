@@ -1,20 +1,35 @@
 <!doctype html>
 <html lang="ja">
 
+<head>
+    <!-- <script type="text/javascript" src="./src.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
 <body>
     <div class="main">
-        <h1>見出し</h1>
-        <form method="POST" action="sample.cgi">
-            <p>URL : <input type="text" name="url"></p>
-            <p>
-                <input type="submit" value="変換する">
-                <input type="reset" value="入力内容をリセットする">
-            </p>
+        <h1>OutoQR</h1>
+        <form name="myform">
+            <input name="mytext" type="text" id="url" />
+
+            <!-- onclick属性を付与してcheckText関数を実行する -->
+            <input type="button" value="送信" onclick="checkText()" />
         </form>
-        <img src="qr.png">
+        <!-- <img src="qr.png"> -->
     </div>
 </body>
 
 
+<script>
+    async function checkText() {
+
+        await axios.post('http://localhost:8000/generate/', { url: urlText.value })
+            .then(res => console.log(res.data))
+        let urlText = document.getElementById('url');
+        console.log(urlText.value)
+    }
+
+</script>
 
 </html>
