@@ -1,2 +1,5 @@
 /app/api/autoqr
 /app/api/favicon.png
+/app/ui/package.json
+/app/ui/node_modules
+/app/ui/package-lock.json

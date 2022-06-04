@@ -1,11 +1,25 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-
+from fastapi.middleware.cors import CORSMiddleware
 import os
 import pprint
 import time
 import urllib.error
 import urllib.request
+
+app = FastAPI()
+
+origins = [
+    "http://localhost",
+    "http://localhost:8000/generate/",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,   # 追記により追加
+    allow_methods=["*"],      # 追記により追加
+    allow_headers=["*"]       # 追記により追加
+)
 
 
 def download_file(url, dst_path):
@@ -19,11 +33,11 @@ def download_file(url, dst_path):
         print(e)
 
 
-app = FastAPI()
-
-
 class Schema(BaseModel):
     url: str
+
+    class Config:
+        orm_mode = True
 
 
 @app.post("/generate/")
