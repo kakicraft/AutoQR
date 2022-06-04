@@ -1,2 +1,4 @@
 uvicorn
 fastapi
+bs4
+requests
