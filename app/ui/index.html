@@ -2,9 +2,9 @@
 <html lang="ja">
 
 <head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="./style.css">
-    <!-- <script type="text/javascript" src="./src.js"></script> -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>WEB上で画像入りQRコードを作成しよう</title>
 </head>
 
@@ -15,11 +15,9 @@
         <p class="sub-text">↓サイトURLを入れて、プレビューボタンをおして作成↓</p>
         <form class="form" name="myform">
             <input class="url-form" name="mytext" type="text" id="url" placeholder="URL" />
-
             <!-- onclick属性を付与してcheckText関数を実行する -->
             <input class="btn" type="button" value="プレビュー" onclick="checkText()" />
         </form>
-        <!-- <img src="qr.png"> -->
     </div>
 
     <div class="text-center mt-16">
@@ -43,9 +41,9 @@
 
 <script>
     async function checkText() {
+        let urlText = document.getElementById('url');
         await axios.post('http://localhost:8000/generate/', { url: urlText.value })
             .then(res => console.log(res.data))
-        let urlText = document.getElementById('url');
         console.log(urlText.value)
     }
 </script>
