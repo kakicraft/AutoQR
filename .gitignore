@@ -1,6 +1,13 @@
 /app/api/autoqr
 /app/api/favicon.png
+/app/api/favicon_qrcode.png
 /app/api/__pycache__/
 /app/ui/package.json
 /app/ui/node_modules
 /app/ui/package-lock.json
+*.pyc
+
+__pycache__/
+*.py[cod]
+*$py.class
+*__pycache__*

@@ -7,6 +7,7 @@ import re
 import requests
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
+import subprocess
 
 app = FastAPI()
 
@@ -62,4 +63,5 @@ def generateQR(req: Schema):
     url_icon = parse(req.url)
     print(url_icon)
     download_file(url_icon, dst_path)
+    res = subprocess.run(['myqr', req.url, '-p', 'favicon.png', '-c'])
     return "succeeded"
