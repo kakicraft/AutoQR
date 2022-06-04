@@ -8,6 +8,8 @@ import requests
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 import subprocess
+import os
+
 
 app = FastAPI()
 
@@ -33,12 +35,14 @@ def parse(URL):
     # .pngか.icoを含むリンクのリストを作成
     png_ico_in = [s for s in iconURL if ('.png' in s) or ('.ico' in s)]
     # 本当は一番数字の大きい(解像度の高い)要素を取得したかった
+    if not png_ico_in:
+        return -1
     maxURL = png_ico_in[-1]
     if not maxURL.startswith('http'):
         maxURL = '{uri.scheme}://{uri.netloc}'.format(
             uri=urlparse(URL)) + maxURL
-    print(iconURL)
-    print(png_ico_in)
+    # print(iconURL)
+    # print(png_ico_in)
     return maxURL
 
 
@@ -61,7 +65,12 @@ class Schema(BaseModel):
 def generateQR(req: Schema):
     dst_path = './favicon.png'
     url_icon = parse(req.url)
-    print(url_icon)
+    # print(url_icon)
     download_file(url_icon, dst_path)
-    res = subprocess.run(['myqr', req.url, '-p', 'favicon.png', '-c'])
-    return "succeeded"
+    res = subprocess.run(
+        ['myqr', req.url, '-p', 'favicon.png', '-c'])  # , '-d', '../ui/'
+    return "succeed"
+
+
+# os.remove('favicon_qrcode.png')
+# os.remove('favicon.png')

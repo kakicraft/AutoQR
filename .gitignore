@@ -1,6 +1,6 @@
 /app/api/autoqr
 /app/api/favicon.png
-/app/api/favicon_qrcode.png
+favicon_qrcode.png
 /app/api/__pycache__/
 /app/ui/package.json
 /app/ui/node_modules
