@@ -28,11 +28,17 @@ def parse(URL):
     soup = BeautifulSoup(response.text, 'html.parser')
     iconURL = [url.attrs['href'] for url in soup.find_all(
         'link', rel=re.compile('^.*icon.*$', re.IGNORECASE))]
-    if not iconURL[0].startswith('http'):
-        iconURL[0] = '{uri.scheme}://{uri.netloc}/'.format(
-            uri=urlparse(URL)) + iconURL[0]
     print(iconURL)
-    return iconURL
+    # .pngか.icoを含むリンクのリストを作成
+    png_ico_in = [s for s in iconURL if ('.png' in s) or ('.ico' in s)]
+    # 本当は一番数字の大きい(解像度の高い)要素を取得したかった
+    maxURL = png_ico_in[-1]
+    if not maxURL.startswith('http'):
+        maxURL = '{uri.scheme}://{uri.netloc}'.format(
+            uri=urlparse(URL)) + maxURL
+    print(iconURL)
+    print(png_ico_in)
+    return maxURL
 
 
 def download_file(url, dst_path):
@@ -53,7 +59,7 @@ class Schema(BaseModel):
 @app.post("/generate/")
 def generateQR(req: Schema):
     dst_path = './favicon.png'
-    url_icon = parse(req.url)[0]
+    url_icon = parse(req.url)
     print(url_icon)
     download_file(url_icon, dst_path)
     return "succeeded"
