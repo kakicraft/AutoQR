@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+html{
+	font-size: 62.5%;
+}
+
+*,*::before,*::after{
+	box-sizing: border-box;
+}
+body{
+	/* 全体のフォントカラー */
+	color: #111;
+	text-align: center;
+	font-size: 1.3rem;
+}
+.main{
+    background-color: #eaeaea;
+    padding: 30px 50px;
+}
+.heading{
+    position: relative;
+	display: inline-block;
+	margin: 30px 0 15px;
+	padding-bottom: 15px;
+	letter-spacing: 2px;
+	font-size: 4rem;
+}
+.text{
+	margin: 0 0 30px;
+	letter-spacing: 1px;
+	font-size: 2.2rem;
+}
+.text::before,
+.text::after{
+	content: "";
+	display: inline-block;
+	width: 140px;
+	height: 2px;
+	margin: 0 30px;
+	background-color: #666;
+	vertical-align: middle;
+}
+.sub-text{
+	margin: 30px 0 0;
+	font-size: 1.6rem;
+}
+.main .form{
+	margin: 10px 30px 30px;
+}
+.main .form .url-form{
+	color: rgba(107,114,128,var(--tw-text-opacity));
+	border-radius: 5px;
+	line-height: 30px;
+	width: 300px;
+	border: 3px solid rgb(189, 189, 189);
+}
+.main .form .btn{
+	background-color: #009cd3;
+	color: #fff;
+	font-size: 1.3rem;
+	width: 100px;
+	line-height: 30px;
+	border-radius: 5px;
+	border: 3px solid #009cd3;
+	margin: 10px 30px 30px;
+}
+.main .form .btn:hover{
+	background-color: #fff;
+	color: #009cd3;
+	cursor: pointer;
+}
+.btn-SNS{
+	color: rgba(255,255,255,var(--tw-text-opacity));
+	width: 120px;
+}
+.c-button__twitter{
+
+}
+.c-button__facebook{
+
+}
+/*---------------------------------------------
+タブレット
+---------------------------------------------*/
+@media screen and (min-width:769px) and (max-width:999px) {
+	.text::after,
+    .text::before{
+        display: block;
+        width: 80%;
+        margin: 10px auto;
+    }
+    .text{
+        font-size: 1.7rem;
+    }
+}
+/*---------------------------------------------
+スマホ
+---------------------------------------------*/
+@media screen and (max-width:768px) {
+	.text::after,
+    .text::before{
+        display: block;
+        width: 80%;
+        margin: 10px auto;
+    }
+    .text{
+        font-size: 1.7rem;
+    }
+}
+
+
+
+

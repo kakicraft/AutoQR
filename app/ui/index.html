@@ -4,18 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <title>WEB上で画像入りQRコードを作成しよう</title>
 </head>
 
 <body>
     <div class="main">
-        <h1>AutoQR</h1>
-        <form name="myform">
-            <input name="mytext" type="text" id="url" />
-
+        <h2 class="text">WEB上でアイコン入りQRコードを作成しよう！</h2>
+        <h1 class="heading">AutoQR</h1>
+        <p class="sub-text">↓サイトURLを入れて、プレビューボタンをおして作成↓</p>
+        <form class="form" name="myform">
+            <input class="url-form" name="mytext" type="text" id="url" placeholder="URL" />
             <!-- onclick属性を付与してcheckText関数を実行する -->
-            <input type="button" value="送信" onclick="checkText()" />
+            <input class="btn" type="button" value="プレビュー" onclick="checkText()" />
         </form>
-        <!-- <img src="qr.png"> -->
+    </div>
+
+    <div class="text-center mt-16">
+        <div ><a data-v-d960f4fe="" class="inline-flex items-center justify-center cursor-pointer w-1/2 bg-red-400 hover:bg-red-300 text-white font-semibold py-2 px-4 border rounded">
+            <i data-v-d960f4fe="" class="c-icon__download inline-block"></i>
+            <span data-v-d960f4fe="" class="pl-1">ダウンロード</span>
+        </a>
+    </div>
+    <div class="flex space-x-3 justify-center mt-20">
+        <a  href="https://twitter.com/intent/tweet?text=QRコードぜひ読み取ってみてね！！&amp;hashtags=QRコード,QR&amp;url=https://profill-app.net/"
+        target="_blank" rel="noreferrer" class="btn-SNS c-button__twitter">
+        ツイート
+        </a>
+        <a  href="http://www.facebook.com/share.php?u=https://profill-app.net/" target="_blank" rel="noreferrer"
+        class="btn-SNS c-button__facebook">
+        Facebook
+        </a>
     </div>
 </body>
 
@@ -27,7 +46,6 @@
             .then(res => console.log(res.data))
         console.log(urlText.value)
     }
-
 </script>
 
 </html>
