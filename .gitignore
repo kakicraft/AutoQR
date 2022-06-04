@@ -1,6 +1,6 @@
 /app/api/autoqr
 /app/api/favicon.png
-/app/api/__pycache__
+/app/api/__pycache__/
 /app/ui/package.json
 /app/ui/node_modules
 /app/ui/package-lock.json
