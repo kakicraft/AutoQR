@@ -1,11 +1,12 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-import os
-import pprint
-import time
 import urllib.error
 import urllib.request
+import re
+import requests
+from urllib.parse import urlparse
+from bs4 import BeautifulSoup
 
 app = FastAPI()
 
@@ -22,13 +23,22 @@ app.add_middleware(
 )
 
 
+def parse(URL):
+    response = requests.get(URL)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    iconURL = [url.attrs['href'] for url in soup.find_all(
+        'link', rel=re.compile('^.*icon.*$', re.IGNORECASE))]
+    if not iconURL[0].startswith('http'):
+        iconURL[0] = '{uri.scheme}://{uri.netloc}/'.format(
+            uri=urlparse(URL)) + iconURL[0]
+    print(iconURL)
+    return iconURL
+
+
 def download_file(url, dst_path):
     try:
-        # with urllib.request.urlopen("http://www.google.com/s2/favicons?domain="+url) as web_file:
-        with urllib.request.urlopen("http://favicon.hatena.ne.jp/?url="+url) as web_file:
-            data = web_file.read()
-            with open(dst_path, mode='wb') as local_file:
-                local_file.write(data)
+        with urllib.request.urlopen(url) as web_file, open(dst_path, 'wb') as local_file:
+            local_file.write(web_file.read())
     except urllib.error.URLError as e:
         print(e)
 
@@ -43,5 +53,7 @@ class Schema(BaseModel):
 @app.post("/generate/")
 def generateQR(req: Schema):
     dst_path = './favicon.png'
-    download_file(req.url, dst_path)
+    url_icon = parse(req.url)[0]
+    print(url_icon)
+    download_file(url_icon, dst_path)
     return "succeeded"
