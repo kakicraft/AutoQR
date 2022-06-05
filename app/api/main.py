@@ -31,13 +31,14 @@ def parse(URL):
     soup = BeautifulSoup(response.text, 'html.parser')
     iconURL = [url.attrs['href'] for url in soup.find_all(
         'link', rel=re.compile('^.*icon.*$', re.IGNORECASE))]
-    print(iconURL)
+    # print(iconURL)
     # .pngか.icoを含むリンクのリストを作成
     png_ico_in = [s for s in iconURL if ('.png' in s) or ('.ico' in s)]
     # 本当は一番数字の大きい(解像度の高い)要素を取得したかった
     if not png_ico_in:
         return -1
     maxURL = png_ico_in[-1]
+    # 相対パスの場合にドメインまでを追加する
     if not maxURL.startswith('http'):
         maxURL = '{uri.scheme}://{uri.netloc}'.format(
             uri=urlparse(URL)) + maxURL
