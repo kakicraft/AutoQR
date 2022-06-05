@@ -2,23 +2,24 @@
 <html lang="ja">
 
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="./style.css">
-    <!-- <script type="text/javascript" src="./src.js"></script> -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- icon -->
     <script src="https://kit.fontawesome.com/7c679e1f70.js" crossorigin="anonymous"></script>
     <title>WEB上で画像入りQRコードを作成しよう</title>
 </head>
 
 <body>
-    <div id="particles-js"></div>
-    <div class="main" id="back">
+    <!-- メインコンテンツ -->
+    <div class="main">
         <h2 class="text">WEB上でアイコン入りQRコードを作成しよう！</h2>
         <h1 class="heading">AutoQR</h1>
         <p class="sub-text">↓サイトURLを入れて、プレビューボタンをおして作成↓</p>
         <form class="form" name="myform">
             <input class="url-form" name="mytext" type="text" id="url" placeholder="URL" />
-
+            <!-- Enterキーによる誤送信防止 -->
+            <input type="text" name="dummy" style="display:none;">
             <!-- onclick属性を付与してcheckText関数を実行する -->
             <input class="btn" type="button" value="プレビュー" onclick="checkText()" />
         </form>
@@ -30,19 +31,23 @@
     <!-- ---------------------------------------------
     ここにQRコードを出力したい
     --------------------------------------------- -->
+    <img src="../api/favicon_qrcode.png">
     </div>
 
 
     <div class="btn-content">
         <div class="btn-wrapper">
             <a href="#">
+                <!-- ダウンロードボタン -->
                 <span class="btn-download">ダウンロード</span></a>
         </div>
         <div class="btn-wrapper">
+            <!-- ツイート -->
             <a href="https://twitter.com/intent/tweet?text=QRコードぜひ読み取ってみてね！！&amp;hashtags=QRコード,QR&amp;url=https://profill-app.net/" target="_blank" rel="noreferrer" 
             class="btn-SNS c-button__twitter">
             <i class="fa-brands fa-twitter"></i>ツイートする
             </a>
+            <!-- Facebook -->
             <a href="http://www.facebook.com/share.php?u=https://profill-app.net/" target="_blank" rel="noreferrer"
             class="btn-SNS c-button__facebook">
             <i class="fa-brands fa-facebook-f"></i>Facebook
@@ -53,9 +58,9 @@
 
 <script>
     async function checkText() {
+        let urlText = document.getElementById('url');
         await axios.post('http://localhost:8000/generate/', { url: urlText.value })
             .then(res => console.log(res.data))
-        let urlText = document.getElementById('url');
         console.log(urlText.value)
     }
 </script>
