@@ -2,11 +2,21 @@
 
 html{
 	font-size: 62.5%;
+	height: 100%;
 }
+
 
 *,*::before,*::after{
 	box-sizing: border-box;
 }
+
+a:link,a:visited,a:hover,a:active{
+	text-decoration: none;
+	cursor: pointer;
+	color: #fff;
+	padding: 5px 13px;
+}
+
 body{
 	/* 全体のフォントカラー */
 	color: #111;
@@ -17,16 +27,8 @@ body{
     background-color: #eaeaea;
     padding: 30px 50px;
 }
-.heading{
-    position: relative;
-	display: inline-block;
-	margin: 30px 0 15px;
-	padding-bottom: 15px;
-	letter-spacing: 2px;
-	font-size: 4rem;
-}
 .text{
-	margin: 0 0 30px;
+	margin: 100px 30px 40px;
 	letter-spacing: 1px;
 	font-size: 2.2rem;
 }
@@ -40,6 +42,15 @@ body{
 	background-color: #666;
 	vertical-align: middle;
 }
+.heading{
+    position: relative;
+	display: inline-block;
+	margin: 30px 20px 15px;
+	padding-bottom: 15px;
+	letter-spacing: 6px;
+    font-size: 5rem;
+}
+
 .sub-text{
 	margin: 30px 0 0;
 	font-size: 1.6rem;
@@ -63,21 +74,72 @@ body{
 	border-radius: 5px;
 	border: 3px solid #009cd3;
 	margin: 10px 30px 30px;
+	font-weight: 600;
 }
 .main .form .btn:hover{
 	background-color: #fff;
 	color: #009cd3;
 	cursor: pointer;
 }
+
+.QR{
+	height: 300px;
+	border: 3px solid #111;
+}
+
+
+.btn-content{
+margin-top: 50px;
+}
+.btn-wrapper{
+    padding: 30px;
+	display: block;
+	text-align: center;
+}
+.btn-download{
+	font-weight: 600;
+	width: 50%;
+	font-size: 1.5rem;
+	line-height: 40px;
+	display: inline-block;
+	justify-content: center;
+	border-radius: 5px;
+	letter-spacing: 5px;
+	background-color: #dc61d0;
+}
+.c-icon__download::before{
+
+}
+
 .btn-SNS{
-	color: rgba(255,255,255,var(--tw-text-opacity));
-	width: 120px;
+	font-size: 1.3rem;
+	font-weight: 600;
+	width: 100px;
+	line-height: 40px;
+	border-radius: 5px;
+	margin: 10px 30px 30px;
+	text-align: center;
+	justify-content: center;
+	letter-spacing: 1px;
 }
 .c-button__twitter{
-
+    background-color: #1da1f2;
+	border: 3px solid #1da1f2;
+}
+.fa-brands{
+	font-family: "Font Awesome 5 Brands","Font Awesome 5 Free";
+}
+.fa-twitter::before{
+	content: \f009;
+	padding-right: 10px;
 }
 .c-button__facebook{
-
+    background-color: #3b5998;
+	border: 3px solid #3b5998;
+}
+.fa-facebook-f::before{
+	content: \f082;
+	padding-right: 10px;
 }
 /*---------------------------------------------
 タブレット
@@ -107,7 +169,3 @@ body{
         font-size: 1.7rem;
     }
 }
-
-
-
-
